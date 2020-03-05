@@ -1,0 +1,75 @@
+/*body styles*/
+body{
+    min-height: 100%;
+    /*padding: 20px;*/
+}
+/*top menu styles*/
+#top{
+    background: #27ae60;
+    padding:10px 0;
+}
+#top .offer{
+    color:#ffffff;
+}
+#top .offer .btn{
+    text-transform: uppercase;
+}
+@media(max-width: 991px){
+    #top .offer{
+        margin-bottom: 10px;
+    }
+}
+@media(max-width: 991px){
+    #top{
+        font-size:12px;
+        text-align:center;
+    }
+}
+#top a{
+    color:#ffffff;
+}
+#top ul.menu{
+    padding-top:5px;
+    margin: 0;
+    text-align: right;
+    font-size: 12px;
+    list-style: none;
+}
+@media(max-width: 991px){
+    #top ul.menu{
+        text-align:center;
+    }
+}
+#top ul.menu>li{
+    display: inline-block;
+}
+#top ul.menu>li a{
+    color:#eeeeee;
+}
+#top ul.menu>li+ li:before{
+    content:"|\00a0";
+    padding: 0;
+    color: #f7f7f7;
+}
+.navbar li{
+    align-content: center;
+
+}
+/*footer styles*/
+.footer{
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.footer h6{
+    color: white;
+}
+#to-signup h3{
+    text-align: center;
+}
+p{
+    text-align: center;
+    font-size: 23px;
+}

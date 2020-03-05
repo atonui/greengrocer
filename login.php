@@ -1,85 +1,42 @@
 <?php
-require 'config.php';
 require 'header.php';
-
-$username = $password = '';
-
-$username_err = $password_err = '';
-
-if (isset($_POST['btn-login'])){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if (empty($username)){
-        $username_err = 'Please fill in your username';
-    }elseif(empty($password)){
-        $password_err = 'Please enter your password';
-    }else{
-        $password = md5($password);
-        $sql = "SELECT `id` FROM `users` WHERE username = '$username' AND password = '$password'";
-        //results from db come as a table with rows
-        $results = mysqli_query($conn,$sql);
-
-        if (mysqli_num_rows($results) > 0){
-            //extract data from the results from db query
-            while ($rows = mysqli_fetch_assoc($results)){
-                session_start();
-                $_SESSION['id'] = $rows['id'];
-                $_SESSION['logged_in'] = true;
-            }
-            header('location:index.php');
-        }else{
-            //register user
-            echo "
-                <div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">
-                 You are not a registered user. Please register <a href='signup.php'>Here</a>
-                  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                    <span aria-hidden=\"true\">&times;</span>
-                  </button>
-                </div>
-            ";
-        }
-    }
-}
+require 'footer.php';
 ?>
 
-<body>
-<?php
-    if (isset($_GET['msg'])){
-        echo "
-            <div class=\"alert alert-primary\" role=\"alert\">
-                You are already registered, please login here!
+
+
+
+
+<!--Reg form-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div id="form-section">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <button class="btn btn-success btn-block" name="btn_login">LOG IN</button>
+                    </fieldset>
+                </form>
             </div>
-        
-        ";
-    }
-?>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col col-md-8 col-lg-8 col-xl-8"></div>
-            <div class="col col-md-4 col-lg-4 col-xl-4">
-                <div class="container">
-                    <div class="form-group container" style="padding: 80px 0px;">
-                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
-                            <fieldset>
-                                <div class="form-group" style="padding: 15px 0px;">
-                                    <label for="">Username</label>
-                                    <input type="text" name="username" required class="form-control" placeholder="Username">
-                                </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div id="to-signup">
+                <h3>Create Your Account With Us</h3>
+                <hr>
+                <p>Creating your customer account in just a few clicks! Register using your e-mail address by clicking the button below.</p>
+                <br>
+                <a href="signup.php"><button class="btn btn-success btn-block" name="btn_login">SIGN UP</button></a>
 
-                                <div class="form-group" style="padding: 15px 0px;">
-                                    <label for="">Password</label>
-                                    <input type="password" name="password" required class="form-control" placeholder="Password">
-                                </div>
-                                <button class="btn btn-block btn-info" name="btn-login">Log In</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-</body>
-<?php
-require 'footer.php';
-?>
+</div>
+
